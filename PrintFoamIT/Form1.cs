@@ -8,7 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1.Properties;
 using ZXing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
@@ -30,13 +32,27 @@ namespace WindowsFormsApp1
         private Bitmap generatedBarcode = null;
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             comboBox1.Items.Clear();
+
+            
+            pictureBox1.Image = Properties.Resources._2;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            
+
 
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
                 comboBox1.Items.Add(printer);
+            }
+
+            if (comboBox1.Items.Count > 0)
+            {
                 comboBox1.SelectedIndex = 0;
             }
+
+
+            comboBox2.Items.Clear();
             comboBox2.Items.Add("Code 128");
             comboBox2.Items.Add("Code 39");
             comboBox2.Items.Add("QR Code");
@@ -45,15 +61,16 @@ namespace WindowsFormsApp1
 
             comboBox2.SelectedIndex = 0;
 
-            PaperSize customPaperSize = new PaperSize("CustomSize", 125, 80); // sizes in hundredths of an inch -->  30mm*85mm
+            // ตัวอย่าง: 125 = 1.25 นิ้ว, 80 = 0.8 นิ้ว (≈ 31.75mm x 20.32mm)
+            PaperSize customPaperSize = new PaperSize("CustomSize", 125, 80);
             printDocument1.DefaultPageSettings.PaperSize = customPaperSize;
-
             printPreviewControl1.Document = printDocument1;
 
-            //pictureBox2.Image = Image.FromFile(@"\\");
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
 
+            pictureBox2.Image = Properties.Resources._1;
         }
+
         private void textBox_TextChanged(object sender, EventArgs e)
         {
             printPreviewDialog1.ShowDialog();
@@ -65,7 +82,7 @@ namespace WindowsFormsApp1
             {
                 Bitmap img = new Bitmap(pictureBox1.Image);
                 int imageWidth = 20;
-                int imageHeight = 20;
+                int imageHeight = 15;
                 e.Graphics.DrawImage(img, 92, 3, imageWidth, imageHeight);
             }
 
@@ -130,37 +147,6 @@ namespace WindowsFormsApp1
             Application.Exit();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
@@ -185,15 +171,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
@@ -258,75 +236,6 @@ namespace WindowsFormsApp1
 
 
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void printPreviewControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click_2(object sender, EventArgs e)
-        {
-             
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
